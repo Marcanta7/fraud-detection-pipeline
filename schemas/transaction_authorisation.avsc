@@ -1,0 +1,67 @@
+{
+  "type": "record",
+  "name": "TransactionAuthorisationEvent",
+  "namespace": "com.fraudpipeline.events.v2",
+  "fields": [
+    {"name": "event_type",      "type": "string"},
+    {"name": "event_id",        "type": "string"},
+    {"name": "schema_version",  "type": "string"},
+    {"name": "emitted_at",      "type": "string"},
+    {"name": "transaction", "type": {
+      "type": "record", "name": "Transaction",
+      "fields": [
+        {"name": "transaction_id", "type": "string"},
+        {"name": "amount_minor",   "type": "long"},
+        {"name": "currency",       "type": "string"},
+        {"name": "type",           "type": "string"},
+        {"name": "channel",        "type": "string"},
+        {"name": "entry_mode",     "type": "string"},
+        {"name": "mcc",            "type": "string"},
+        {"name": "is_3ds",         "type": "boolean"}
+      ]
+    }},
+    {"name": "card", "type": {
+      "type": "record", "name": "Card",
+      "fields": [
+        {"name": "card_id",    "type": "string"},
+        {"name": "last_four",  "type": "string"},
+        {"name": "scheme",     "type": "string"},
+        {"name": "is_virtual", "type": "boolean"}
+      ]
+    }},
+    {"name": "customer", "type": {
+      "type": "record", "name": "Customer",
+      "fields": [
+        {"name": "customer_id",       "type": "string"},
+        {"name": "account_age_days",  "type": "int"},
+        {"name": "kyc_tier",          "type": "string"}
+      ]
+    }},
+    {"name": "merchant", "type": {
+      "type": "record", "name": "Merchant",
+      "fields": [
+        {"name": "merchant_id", "type": "string"},
+        {"name": "name",        "type": "string"},
+        {"name": "country",     "type": "string"},
+        {"name": "city",        "type": "string"},
+        {"name": "terminal_id", "type": "string"}
+      ]
+    }},
+    {"name": "location", "type": {
+      "type": "record", "name": "Location",
+      "fields": [
+        {"name": "ip_country", "type": ["null", "string"], "default": null},
+        {"name": "device_id",  "type": ["null", "string"], "default": null}
+      ]
+    }},
+    {"name": "network", "type": {
+      "type": "record", "name": "Network",
+      "fields": [
+        {"name": "rrn",           "type": "string"},
+        {"name": "auth_code",     "type": "string"},
+        {"name": "response_code", "type": "string"},
+        {"name": "acquirer_bin",  "type": "string"}
+      ]
+    }}
+  ]
+}
