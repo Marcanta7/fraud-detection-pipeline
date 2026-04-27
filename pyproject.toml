@@ -5,11 +5,13 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "apache-beam>=2.70.0",
     "avro-python3>=1.10.2",
     "faker>=40.15.0",
     "kafka-python-ng>=2.2.3",
     "pydantic>=2.13.3",
     "python-dotenv>=1.2.2",
+    "redis>=7.4.0",
     "rich>=15.0.0",
     "ulid-py>=1.1.0",
 ]

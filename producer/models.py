@@ -57,3 +57,20 @@ class TransactionAuthorisationEvent(BaseModel):
     merchant: Merchant
     location: Location
     network: Network
+
+class FraudFeatures(BaseModel):
+    avg_spend_minor: int
+    txn_count_1h: int
+    distinct_countries_24h: int
+    known_mccs: list[str]
+    is_cold_start: bool
+    amount_vs_avg_ratio: float    # amount / avg_spend — key fraud signal
+    is_known_mcc: bool
+    is_high_risk_mcc: bool
+    is_high_risk_channel: bool
+
+
+class EnrichedTransactionEvent(BaseModel):
+    event: TransactionAuthorisationEvent
+    features: FraudFeatures
+    enriched_at: str

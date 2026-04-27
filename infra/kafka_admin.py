@@ -22,6 +22,16 @@ def create_topics() -> None:
             num_partitions=3,
             replication_factor=1,
         ),
+        NewTopic(
+            name="transactions-enriched",
+            num_partitions=6,
+            replication_factor=1,
+        ),
+        NewTopic(
+            name="transactions-dead-letter",
+            num_partitions=2,
+            replication_factor=1,
+        ),
     ]
     try:
         client.create_topics(topics)
