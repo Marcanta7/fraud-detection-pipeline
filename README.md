@@ -12,15 +12,15 @@ This project demonstrates modern data engineering practices including streaming 
 ┌─────────────────────────────────────────────────────────────────────┐
 │                          INGEST LAYER                               │
 │                                                                     │
-│   Card Transactions  ──►  Pub/Sub (transactions-raw)  ──►  Schema  │
+│   Card Transactions  ──►  Pub/Sub (transactions-raw)  ──►  Schema   │
 │   (POS, ecommerce,                                        Registry  │
 │    ATM, contactless)                                    (Avro 2.4)  │
 └─────────────────────────────┬───────────────────────────────────────┘
                               │
 ┌─────────────────────────────▼───────────────────────────────────────┐
-│                        STREAM LAYER                                  │
+│                        STREAM LAYER                                 │
 │                                                                     │
-│   Dataflow Enrichment  ──►  Feature Store  ──►  Dead Letter Queue  │
+│   Dataflow Enrichment  ──►  Feature Store  ──►  Dead Letter Queue   │
 │   (Apache Beam)             (Vertex AI /         (malformed         │
 │   - schema validation        Redis cache)         events)           │
 │   - feature lookup                                                  │
@@ -28,23 +28,23 @@ This project demonstrates modern data engineering practices including streaming 
 └─────────────────────────────┬───────────────────────────────────────┘
                               │
 ┌─────────────────────────────▼───────────────────────────────────────┐
-│                        SCORING LAYER                                 │
+│                        SCORING LAYER                                │
 │                                                                     │
-│   Fraud Score Model  ──►  Rule Engine  ──►  Decision Router        │
-│   (XGBoost /               (velocity,         ALLOW / REVIEW /     │
-│    Vertex AI)               geo, amount,       BLOCK               │
+│   Fraud Score Model  ──►  Rule Engine  ──►  Decision Router         │
+│   (XGBoost /               (velocity,         ALLOW / REVIEW /      │
+│    Vertex AI)               geo, amount,       BLOCK                │
 │                             MCC risk)                               │
 └─────────────────────────────┬───────────────────────────────────────┘
                               │
-┌─────────────────────────────▼───────────────────────────────────────┐
+┌─────────────────────────────▼────────────────────────────────────────┐
 │                          SINK LAYER                                  │
-│                                                                     │
-│   BigQuery  ◄──  All transactions    Alerts Pub/Sub  ──►  Looker   │
-│   (partitioned      (scored)         (BLOCK/REVIEW        Dashboard │
-│    by day,                            events)             (ops      │
+│                                                                      │
+│   BigQuery  ◄──  All transactions    Alerts Pub/Sub  ──►  Looker     │
+│   (partitioned      (scored)         (BLOCK/REVIEW        Dashboard  │ 
+│    by day,                            events)             (ops       │
 │    clustered by                                           monitoring)│
-│    customer_id)                                                     │
-└─────────────────────────────────────────────────────────────────────┘
+│    customer_id)                                                      │
+└───────────────────────────────────────────────────────────────────── ┘
 
 Target SLA: < 200ms latency · 10k+ events/sec · 99.9% availability
 ```
@@ -54,7 +54,7 @@ Target SLA: < 200ms latency · 10k+ events/sec · 99.9% availability
 ## 🛠 Tech Stack
 
 | Layer | Technology | Purpose |
-|-------|-----------|---------|
+|-------|------------|---------|
 | Ingest | Apache Kafka (Confluent) | Durable event buffer, decouples producers from consumers |
 | Ingest | Avro + Schema Registry | Schema enforcement and evolution |
 | Stream | Apache Beam / GCP Dataflow | Scalable enrichment transforms |
@@ -112,7 +112,7 @@ fraud-detection-pipeline/
 ## 🗂 Kafka Topics
 
 | Topic | Partitions | Description |
-|-------|-----------|-------------|
+|-------|------------|-------------|
 | `transactions-raw` | 6 | Raw authorisation events from the producer |
 | `transactions-enriched` | 6 | Events with customer behaviour features attached |
 | `fraud-alerts` | 3 | BLOCK and REVIEW decisions for downstream consumers |
