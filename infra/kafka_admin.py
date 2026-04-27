@@ -28,6 +28,16 @@ def create_topics() -> None:
             replication_factor=1,
         ),
         NewTopic(
+            name="transactions-scored",
+            num_partitions=6,
+            replication_factor=1,
+        ),
+        NewTopic(
+            name="transactions-dead-letter",
+            num_partitions=2,
+            replication_factor=1,
+        ),
+        NewTopic(
             name="transactions-dead-letter",
             num_partitions=2,
             replication_factor=1,
