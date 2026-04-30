@@ -1,0 +1,6 @@
+{
+  "version": "20260430_103450",
+  "roc_auc": 1.0,
+  "trained_at": "2026-04-30T10:34:51.896532+00:00",
+  "model_path": "scorer/model_artifacts/fraud_model_20260430_103450.pkl"
+}

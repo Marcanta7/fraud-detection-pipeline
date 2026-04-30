@@ -267,7 +267,7 @@ You should see:
 
 - [x] **Session 1** — repo setup, Kafka infrastructure, Avro schema, transaction event producer
 - [x] **Session 2** — enrichment pipeline, Redis feature store, feature engineering
-- [ ] **Session 3** — XGBoost fraud scorer + rule engine + decision router (ALLOW / REVIEW / BLOCK)
+- [x] **Session 3** — XGBoost fraud scorer + rule engine + decision router (ALLOW / REVIEW / BLOCK)
 - [ ] **Session 4** — BigQuery sink + fraud alerts publisher + Looker ops dashboard
 
 ---

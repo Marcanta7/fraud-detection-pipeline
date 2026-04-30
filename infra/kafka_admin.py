@@ -38,6 +38,11 @@ def create_topics() -> None:
             replication_factor=1,
         ),
         NewTopic(
+            name="confirmed-fraud",
+            num_partitions=3,
+            replication_factor=1,
+        ),
+        NewTopic(
             name="transactions-dead-letter",
             num_partitions=2,
             replication_factor=1,
